@@ -1,0 +1,78 @@
+import React, { Component} from "react";
+import { render } from "react-dom";
+import "./App.css";
+
+class App extends Component {
+
+  //lifecycle method, runs when the component loaded
+  render() {
+    return (
+    
+      //jsx requires to return one parent element
+      <div className="App">
+        <h1> Hello, {name} React App</h1>
+      </div>
+    );
+
+  }
+}
+
+export default App;
+
+----------------------
+use plain js
+import React, { Component} from "react";
+import { render } from "react-dom";
+import "./App.css";
+
+class App extends Component {
+
+  //lifecycle method, runs when the component loaded
+  render() {
+    return 
+       React.createElement('div', {className: 'App'} ,
+       React.createElement('h1', null, 'Hello there'));
+
+  }
+}
+
+export default App;
+------------------------------------------
+use expression
+import React, { Component} from "react";
+import { render } from "react-dom";
+import "./App.css";
+
+class App extends Component {
+
+  //lifecycle method, runs when the component loaded
+  render() {
+    //class method, need this to access it
+    bar = () => 'bar';
+    const name = "john";
+    const foo = () => {
+        'bar';
+    }
+    const loading = true;
+    const showName = true;
+    return (
+    
+      //jsx requires to return one parent element
+      <div className="App">
+        <h1> Hello, {name.toUpperCase()} React App</h1>
+        <h1> Hello, {foo()} React App</h1>
+        <h1> Hello, {this.bar()} React App</h1>
+        {loading ? <h4>Loading..</h4> : <h1> Hello, {this.bar()} React App</h1>}
+
+        //only show name if it's true
+        {loading ? <h4>Loading..</h4> : <h1> Hello {showName && name} </h1>}
+      </div>
+    );
+
+  }
+}
+
+export default App;
+
+
+
