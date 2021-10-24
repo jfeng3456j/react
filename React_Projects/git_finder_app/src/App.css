@@ -226,6 +226,11 @@ img {
   margin-right: 0.2rem;
 }
 
+.btn-circle { 
+  border-radius: 90px; 
+  text-align: center; 
+}
+
 .badge {
   display: inline-block;
   font-size: 0.8rem;
