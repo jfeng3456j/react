@@ -78,3 +78,13 @@ export default App;
 class component have state
 function component usually don't have state, but hook take cares of that
 
+------------------------------------------
+import {useState, useEffect} from 'react'
+hook - enable functional component to use state
+  - useState
+  - useEffect - lifecycle - componentDidMount
+  - useContext - 
+  - useReducer - redux like reducer, a function dispatch action to app level state and sends to another component
+  - useRef - use for form submission
+
+

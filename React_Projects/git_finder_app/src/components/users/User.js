@@ -1,30 +1,30 @@
-import React, { Component, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
 import Repos from '../repos/Repos';
 
-class User extends Component {
-    componentDidMount() {
-        //get the uri param login from props and pass it into getUser 
-        //then make the api call
-        this.props.getUser(this.props.match.params.login);
-        this.props.getUserRepos(this.props.match.params.login)
-    }
+const User = (props) => {
+    // componentDidMount() {
+    //     //get the uri param login from props and pass it into getUser 
+    //     //then make the api call
+    //     this.props.getUser(this.props.match.params.login);
+    //     this.props.getUserRepos(this.props.match.params.login)
+    // }
 
-    static propTypes = {
-        loading: PropTypes.bool.isRequired,
-        user: PropTypes.object.isRequired,
-        repos: PropTypes.array.isRequired,
-        getUser: PropTypes.func.isRequired,
-        getUserRepos: PropTypes.func.isRequired,
-    }
-    render() {
-        const { name, avatar_url, location, bio, blog, login, html_url, followers, company, following, public_repos, public_gists, hireable} = this.props.user;
+    //replace componentDidMount to useEffect()
+    useEffect(() => {
+        props.getUser(props.match.params.login);
+        props.getUserRepos(props.match.params.login);
+        //disable useEffect warning on dependices
+        //eslint-disable-next-line
+    }, []); //empty[] makes it run once
+
+    const { name, avatar_url, location, bio, blog, login, html_url, followers, company, following, public_repos, public_gists, hireable} = props.user;
         
-        const { repos,loading } = this.props;
+    const { repos, loading} = props;
 
-        if (loading) {
+    if (loading) {
             return <Spinner />
         } else {
             return (
@@ -80,6 +80,7 @@ class User extends Component {
                     </div>
                     <div className="card">
                         <h2 className="text-center">User Repositories: </h2>
+                    {/* repo component */}
                     <Repos repos={repos}/>
                     </div>
                 </Fragment>
@@ -87,6 +88,14 @@ class User extends Component {
         }
         
     }
+
+
+User.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired,
+    repos: PropTypes.array.isRequired,
+    getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
 }
 
 export default User;

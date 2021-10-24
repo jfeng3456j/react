@@ -1,51 +1,38 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-export class Search extends Component {
-  state = {
-    text: "",
-  };
+const Search = ({ showClear, clearUsers, setAlert, searchUsers}) => {
+  //useState hook
+  //create text value state and set default value = ''
+  const [text, setText] = useState('');
 
-  static propTypes = {
-    searchUsers: PropTypes.func.isRequired,
-    clearUsers: PropTypes.func.isRequired,
-    showClear: PropTypes.bool.isRequired,
-    setAlert: PropTypes.func.isRequired,
-  };
-
-  onChange = (e) => {
+  const onChange = (e) => {
     //e.target.name is the input attribute name
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    setText(e.target.value);
   };
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
-    if (this.state.text === "") {
-      this.props.setAlert("Please enter something", "light");
+    if (text === "") {
+      setAlert("Please enter something", "light");
     } else {
       // pass this this.state.text to app.js and use in api url
-      this.props.searchUsers(this.state.text);
+      searchUsers(text);
 
       //set the component text back to blank
-      this.setState({
-        text: "",
-      });
+      setText('');
     }
   };
 
-  render() {
-    const { showClear, clearUsers } = this.props;
     return (
       <div>
-        <form onSubmit={this.onSubmit} className="form">
+        <form onSubmit={onSubmit} className="form">
           <input
             type="text"
             name="text"
-            value={this.state.text}
-            onChange={this.onChange}
+            value={text}
+            onChange={onChange}
             placeholder="Search users..."
           />
           <input
@@ -62,6 +49,12 @@ export class Search extends Component {
       </div>
     );
   }
-}
+
+Search.propTypes = {
+  searchUsers: PropTypes.func.isRequired,
+  clearUsers: PropTypes.func.isRequired,
+  showClear: PropTypes.bool.isRequired,
+  setAlert: PropTypes.func.isRequired,
+};
 
 export default Search;
