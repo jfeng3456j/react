@@ -83,6 +83,12 @@ jspm_packages/
 # next.js build output
 .next
 
+# react
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 # Lerna
 lerna-debug.log
 

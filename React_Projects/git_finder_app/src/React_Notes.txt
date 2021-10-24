@@ -74,5 +74,7 @@ class App extends Component {
 
 export default App;
 
-
+------------------------------------------
+class component have state
+function component usually don't have state, but hook take cares of that
 
