@@ -1,4 +1,5 @@
 import {
+    LOAD_USERS,
   SEARCH_USERS,
   SET_LOADING,
   CLEAR_USERS,
@@ -10,6 +11,12 @@ import {
 // export default (state, action) => {
 const Reducer = (state, action) => {
     switch (action.type) {
+        case LOAD_USERS:
+            return {
+                ...state,
+                users: action.payload,
+                loading: false
+            }
         case SEARCH_USERS:
             return {
                 ...state,

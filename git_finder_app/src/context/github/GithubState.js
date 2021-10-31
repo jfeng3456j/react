@@ -1,9 +1,10 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect} from "react";
 import axios from "axios";
 import GithubContext from "./githubContext";
 import GithubReducer from "./githubReducer";
 
 import {
+  LOAD_USERS,
   SEARCH_USERS,
   SET_LOADING,
   CLEAR_USERS,
@@ -32,6 +33,23 @@ const GithubState = (props) => {
 
   //dispatcher
   const [state, dispatch] = useReducer(GithubReducer, initialState);
+
+
+  //get github users on load
+  const loadUsers = async() => {
+    setLoading();
+
+    const res = await axios.get("https://api.github.com/users");
+
+    dispatch({
+      type: LOAD_USERS,
+      payload: res.data
+    })
+  }
+
+  useEffect(() => {
+    loadUsers();
+  },[])
 
   //search Github users
   const searchUsers = async (text) => {
@@ -90,6 +108,7 @@ const GithubState = (props) => {
         user: state.user,
         repos: state.repos,
         loading: state.loading,
+        loadUsers,
         searchUsers,
         clearUsers,
         getUser,
