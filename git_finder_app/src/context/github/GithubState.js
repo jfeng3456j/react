@@ -49,6 +49,7 @@ const GithubState = (props) => {
 
   useEffect(() => {
     loadUsers();
+    //eslint-disable-next-line
   },[])
 
   //search Github users
