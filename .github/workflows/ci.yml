@@ -1,6 +1,6 @@
 name: github CICD
 
-on: [push, pull request]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Run a one-line script
       run: echo Run CI/CD
-    -name: Run a multi -line script
+    - name: Run a multi -line script
       run: |
         echo add other action to build
         echo test, and deploy the project
