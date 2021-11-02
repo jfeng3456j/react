@@ -17,7 +17,7 @@ const App = () => {
         <Router>
           {/* //jsx requires to return one parent element */}
           <div className="App">
-            <Navbar />
+            <Navbar/>
             <div className="container">
               <Alert />
               <Switch>
