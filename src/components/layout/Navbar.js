@@ -7,7 +7,7 @@ const Navbar = ({ title, icon}) => {
   return (
     <nav className="navbar bg-primary">
       <h1>
-        <i className={icon} /> {"GitHub User Finder"}
+        <Link to ='/'><i className={icon} /></Link>{"GitHub User Finder"}
       </h1>
       <ul>
         <li>
