@@ -1,17 +1,37 @@
-name: github CICD
+name: github Dev CI/CD
 
-on: [push, pull_request]
+on: 
+  push:
+    branches:
+      - dev
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Run CI/CD
-    - name: Run a multi -line script
-      run: |
-        echo add other action to build
-        echo test, and deploy the project
+    #checkout code from repo
+    - name: Checkout code
+      uses: actions/checkout@v1
+    
+    #install node js
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    
+    #Rum npm install and build the code
+    - run: npm install
+    - run : npm run build --if-present
+
+    #deploy to netlify with credentials
+    - name: Deploy to netlify
+      uses: netlify/actions/cli@dev
+      env:
+        NETLIFY_AUTH_TOKEN: ${{secrets.NETLIFY_AUTH_TOKEN}}
+        NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
+      with:
+        args: deploy --dir=build --prod
+        secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+
 

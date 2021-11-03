@@ -1,3 +1,3 @@
 [build]
-    publish = "git_finder_app/build"
+    publish = "build"
     

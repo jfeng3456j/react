@@ -88,3 +88,17 @@ hook - enable functional component to use state
   - useRef - use for form submission
 
 
+  -----------------------------------------------------
+  CI/CD links
+  specifcy directory: https://stackoverflow.com/questions/58139175/running-actions-in-another-directory
+
+  create ci/cd using github: https://medium.com/@michaelekpang/creating-a-ci-cd-pipeline-using-github-actions-b65bb248edfe
+
+  set up netflicy ci/cd via github: https://dev.to/dancurtis/ci-cd-pipeline-with-netlify-and-github-actions-bcm
+
+  https://dev.to/michaelcurrin/intro-tutorial-to-ci-cd-with-github-actions-2ba8
+
+  https://marekpukaj.medium.com/build-with-github-actions-host-on-netlify-ebf5fa505616
+
+
+
