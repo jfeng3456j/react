@@ -21,8 +21,12 @@ jobs:
         node-version: 14.x
     
     #Rum npm install and build the code
-    - run: npm install
-    - run : npm run build --if-present
+    - name: Run install
+      working-directory: ./git_finder_app
+      run: npm install
+    - name: Run build
+      working-directory: ./git_finder_app
+      run: npm run build --if-present
 
     #deploy to netlify with credentials
     - name: Deploy to netlify
